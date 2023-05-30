@@ -23,7 +23,7 @@
   become: true
   tasks:
 
-  - name: add apache and php for Ubuntu servers
+  - name: install apache and php for Ubuntu servers
     tags: apache,apache2,ubuntu
     apt:
       name:
@@ -33,7 +33,7 @@
       update_cache: yes
     when: ansible_distribution == "Ubuntu"
 
-  - name: add apache and php for CentOS servers
+  - name: install apache and php for CentOS servers
     tags: httpd,apache,centos
     yum:
       name:
@@ -42,6 +42,15 @@
       state: latest
       update_cache: yes
     when: ansible_distribution == "CentOS"
+
+  - name: copy default html file for site
+    tags: apache,apache2,httpd
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
 
 - hosts: db_servers
   become: true
