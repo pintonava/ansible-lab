@@ -13,7 +13,7 @@
       uri:
         url: "https://awx.chiaplot.eu/api/v2/inventories/3/hosts/"
         method: POST
-        user: "awx"
+        user: "admin"
         password: "SjemfCN4ppqA3ivKfysDtgTYZr7o6hxn"
         body: "{{ lookup('file','create_host.json') }}"
         force_basic_auth: yes
