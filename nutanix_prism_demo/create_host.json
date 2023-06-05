@@ -1,0 +1,5 @@
+{
+  "description": "machine_test created by AWX API",
+  "name": "machine_test",
+  "variables": '{"ansible_host": "192.168.1.1"}'
+}
