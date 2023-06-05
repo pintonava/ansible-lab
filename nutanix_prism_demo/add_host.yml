@@ -13,15 +13,15 @@
       uri:
         url: "https://awx.chiaplot.eu/api/v2/inventories/3/hosts/"
         method: POST
-        headers:
-          Authorization: "Bearer gebDtHSRrbXv8gfvDdhDc1GbnUQJhX"
-          Content-Type: "application/json"
-        body: "{{ lookup('file', 'create_host.json') }}"
+        user: "awx"
+        password: "SjemfCN4ppqA3ivKfysDtgTYZr7o6hxn"
+        body: "{{ lookup('file','create_host.json') }}"
         force_basic_auth: yes
         body_format: json
+        headers:
+          Content-Type: application/json
         status_code: 201
         validate_certs: no
-      register: response
 
     # - name: Add Host to Web Group
     #   uri:
