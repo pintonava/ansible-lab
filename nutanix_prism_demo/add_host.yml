@@ -9,27 +9,23 @@
         src: templates/create_host.json.j2
         dest: create_host.json
 
-    - name: Add Host to Inventory
-      hosts: localhost
-      gather_facts: false
-      tasks:
-        - name: Send POST request to add host
-          uri:
-            url: "https://awx.chiaplot.eu/api/v2/inventories/3/hosts/"
-            method: POST
-            headers:
-              Authorization: "Bearer gebDtHSRrbXv8gfvDdhDc1GbnUQJhX"
-              Content-Type: "application/json"
-            body: |
-              {
-                "description": "machine_test created by AWX API",
-                "name": "machine_test",
-                "variables": "{\"ansible_host\": \"192.168.1.1\"}"
-              }
-            body_format: json
-            status_code: 201
-            validate_certs: no
-      register: response
+    - name: Send POST request to add host
+      uri:
+        url: "https://awx.chiaplot.eu/api/v2/inventories/3/hosts/"
+        method: POST
+        headers:
+          Authorization: "Bearer gebDtHSRrbXv8gfvDdhDc1GbnUQJhX"
+          Content-Type: "application/json"
+        body: |
+          {
+            "description": "machine_test created by AWX API",
+            "name": "machine_test",
+            "variables": "{\"ansible_host\": \"192.168.1.1\"}"
+          }
+        body_format: json
+        status_code: 201
+        validate_certs: no
+        register: response
 
     - debug:
         var: response.json()
