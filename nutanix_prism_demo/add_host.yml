@@ -13,7 +13,7 @@
 
     - name: Send POST request to add host
       uri:
-        url: "https://127.0.0.1/api/v2/inventories/3/hosts/"
+        url: "https://awx.chiaplot.eu/api/v2/inventories/3/hosts/"
         method: POST
         headers:
           Authorization: "Bearer gebDtHSRrbXv8gfvDdhDc1GbnUQJhX"
@@ -28,18 +28,17 @@
         status_code: 201
         validate_certs: no
 
-    # - name: Add Host to Web Group
-    #   uri:
-    #     url: "https://{{ ansible_controller_ip }}/api/v2/groups/{{ ansible_web_group_id }}/hosts/"
-    #     method: POST
-    #     user: "{{ username }}"
-    #     password: "{{ password }}"
-    #     body:
-    #       name: "{{ vm_name }}"
-    #       inventory: "{{ ansible_inventory_id }}"
-    #     force_basic_auth: yes
-    #     body_format: json
-    #     headers:
-    #       Content-Type: application/json
-    #     status_code: 204
-    #     validate_certs: no
+    - name: Add Host to Web Group
+      uri:
+        url: "https://awx.chiaplot.eu/api/v2/groups/5/hosts/"
+        method: POST
+        headers:
+          Authorization: "Bearer gebDtHSRrbXv8gfvDdhDc1GbnUQJhX"
+          Content-Type: "application/json"
+        body:
+          name: "{{ vm_name }}"
+          inventory: "3"
+        force_basic_auth: yes
+        body_format: json
+        status_code: 204
+        validate_certs: no
